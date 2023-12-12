@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Mi Aplicación CRUD
+
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css")
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/hover.css@2.3.1/css/hover-min.css")
+
+    style.
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      h1, h2 {
+        color: #3498db;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #3498db;
+        color: white;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+      }
+
+      input[type="text"], input[type="number"] {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+      }
+
+      .button {
+        padding: 15px;
+        margin-right: 10px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      .button:hover {
+        background-color: #3498db;
+        color: white;
+      }
+
+      a {
+        text-decoration: none;
+        color: #3498db;
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: #2980b9;
+      }
+
+  body
+    .container.mt-5
+      h1(class="animate__animated animate__fadeInDown") Mi Aplicación CRUD
+      h1(class="animate__animated animate__fadeInDown") Lista de Alumnos
+
+      table
+        thead
+          tr
+            th Nombre
+            th Apellido
+            th Edad
+            th Acciones
+        tbody
+          each dato in datos
+            tr
+              td(class="animate__animated animate__fadeInLeft")= dato.columna1
+              td(class="animate__animated animate__fadeInLeft")= dato.columna3
+              td(class="animate__animated animate__fadeInLeft")= dato.columna2
+              td(class="animate__animated animate__fadeInRight")
+                a(class="button hvr-fade" href="/editar/" + dato.id) Editar
+                form(action="/eliminar/" + dato.id, method="POST", style="display: inline-block;")
+                  button(class="button hvr-fade" type="submit") Eliminar
+                a(class="button hvr-fade" href=`/alumno/${dato.id}/cursos`) Ver Cursos de #{dato.columna1}
+
+      h2(class="animate__animated animate__fadeInUp") Agregar nuevo dato
+
+      form(action="/" method="POST")
+        .mb-3
+          label(for="nuevoDato") Nombre
+          input#nuevoDato(type="text", name="nuevoDato", placeholder="Nombre", required)
+        .mb-3
+          label(for="columna3") Apellido
+          input#columna3(type="text", name="columna3", placeholder="Apellido", required)
+        .mb-3
+          label(for="columna2") Edad
+          input#columna2(type="number", name="columna2", placeholder="Edad", required)
+        .mt-3
+          button(class="button hvr-fade" type="submit") Agregar
+
+      h2(class="animate__animated animate__fadeInUp") Enlaces rápidos
+        a(class="button hvr-fade" href="/cursos") Ver Lista de Cursos
+
+    script(src="https://code.jquery.com/jquery-3.6.4.min.js")
+    script(src="app.js")

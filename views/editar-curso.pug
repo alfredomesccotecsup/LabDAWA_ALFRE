@@ -1,0 +1,47 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Editar Curso
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css")
+
+  body
+    .container.mt-5
+      h1 Editar Curso
+
+      form(action=`/actualizar-curso/${curso.id}`, method="POST", onsubmit="return validarFormulario(this);")
+        .mb-3
+          label(for="nuevoCurso", class="form-label") Nuevo nombre para el curso
+          input#nuevoCurso.form-control(type="text", name="nuevoCurso", placeholder="Ingrese el nuevo nombre para el curso", value=curso.nombre, required)
+        .mb-3
+          label(for="profesor", class="form-label") Nuevo profesor
+          input#profesor.form-control(type="text", name="profesor", placeholder="Ingrese el nuevo profesor", value=curso.profesor, required)
+        .mb-3
+          label(for="idAlumno", class="form-label") Nuevo ID del alumno
+          input#idAlumno.form-control(type="number", name="idAlumno", placeholder="Ingrese el nuevo ID del alumno", value=curso.id_alumno, required)
+        .mt-3
+          button.btn.btn-primary(type="submit") Actualizar
+
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js", integrity="sha384-b4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy0GAPqL1O2gqPejdmVPddM",
+    crossorigin="anonymous")
+
+    script.
+      function validarFormulario(formulario) {
+        if (formulario.nuevoCurso.value.trim() === '') {
+          alert('El nuevo nombre para el curso no puede estar vacío');
+          return false;
+        }
+
+        if (formulario.profesor.value.trim() === '') {
+          alert('El nuevo profesor no puede estar vacío');
+          return false;
+        }
+
+        if (isNaN(formulario.idAlumno.value)) {
+          alert('El ID del alumno debe ser un número');
+          return false;
+        }
+
+        return true;
+      }

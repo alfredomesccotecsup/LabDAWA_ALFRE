@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Editar Datos
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css")
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/hover.css@2.3.1/css/hover-min.css")
+
+    style.
+      body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        color: #3498db;
+        margin-bottom: 30px;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: #555;
+      }
+
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 15px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+    script.
+      function validarFormulario(formulario) {
+        if (formulario.nuevoDato.value.trim() === '') {
+          alert('El nuevo valor para columna1 no puede estar vacío');
+          return false;
+        }
+        return true;
+      }
+
+  body
+    .container.mt-5
+      h1(class="animate__animated animate__fadeInDown") Editar Datos
+
+      form(action=`/actualizar/${dato.id}`, method="POST", onsubmit="return validarFormulario(this);")
+        .mb-3
+          label(for="nuevoDato") Nuevo valor para columna1
+          input#nuevoDato(type="text", name="nuevoDato", placeholder="Ingrese el nuevo valor para columna1", value=dato.columna1, required)
+        .mb-3
+          label(for="columna2") Nuevo valor para columna2
+          input#columna2(type="number", name="columna2", placeholder="Ingrese el nuevo valor para columna2", value=dato.columna2, required)
+        .mb-3
+          label(for="columna3") Nuevo valor para columna3
+          input#columna3(type="text", name="columna3", placeholder="Ingrese el nuevo valor para columna3", value=dato.columna3, required)
+        .mt-3
+          button(class="hvr-fade btn btn-primary" type="submit") Actualizar
+
+    script(src="https://code.jquery.com/jquery-3.6.4.min.js")
+    script(src="app.js")
